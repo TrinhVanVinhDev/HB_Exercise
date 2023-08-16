@@ -9,7 +9,7 @@ public class Excercise8 : MonoBehaviour
 
 
     // Movement speed in units per second.
-    public float speed = 1.0F;
+    public float speed = 5.0F;
 
     // Time when the movement started.
     private float startTime;
@@ -29,13 +29,19 @@ public class Excercise8 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distCovered = (Time.time - startTime) * speed;
-        float fractionOfJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(APoint.position, BPoint.position, fractionOfJourney);
-        if(transform.position.x == BPoint.position.x)
+        //float distCovered = (Time.time - startTime) * speed;
+        //float fractionOfJourney = distCovered / journeyLength;
+        //transform.position = Vector3.Lerp(APoint.position, BPoint.position, fractionOfJourney);
+        //if(transform.position.x == BPoint.position.x)
+        //{
+        //    startTime = Time.time;
+        //    transform.position = Vector3.Lerp(BPoint.position, APoint.position, fractionOfJourney);
+        //}
+
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(5, 0, 0), speed * Time.deltaTime);
+        if (transform.position.x == 5)
         {
-            startTime = Time.time;
-            transform.position = Vector3.Lerp(BPoint.position, APoint.position, fractionOfJourney);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0, 0), speed * Time.deltaTime);
         }
     }
 
