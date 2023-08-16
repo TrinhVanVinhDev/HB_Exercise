@@ -5,36 +5,51 @@ using UnityEngine;
 public class Excercise7 : MonoBehaviour
 {
     [SerializeField] private Transform transformObj;
+    [SerializeField] private Transform APoint;
+    [SerializeField] private Transform BPoint;
+    [SerializeField] private Transform CPoint;
+    [SerializeField] private Transform DPoint;
 
-    public float speed = 5f;
+    [SerializeField] private float speed = 5f;
 
-    // Start is called before the first frame update
+    private bool moving = true;
+    private Transform[] arr;
+
     void Start()
     {
-        
+
+        arr = new Transform[] { APoint, BPoint, CPoint, DPoint };
+        RandomPoint();
     }
 
     // Update is called once per frame
     void Update()
     {
         //moving to right 3 point
-        if (transformObj.transform.position.x <= 5 && transformObj.transform.position.y == 0 && transformObj.transform.position.z == 0)
-        {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(5f, 0f, 0f), speed * Time.deltaTime);
-        }
-        if (transformObj.transform.position.x == 5 && transformObj.transform.position.y <= 5 && transformObj.transform.position.z == 0)
-        {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(5f, 5f, 0f), speed * Time.deltaTime);
-        }
-        if (transformObj.transform.position.y == 5 && transformObj.transform.position.y == 5 && transformObj.transform.position.z <= 5)
-        {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(5f, 5f, 5f), speed * Time.deltaTime);
-        }
-        if (transformObj.transform.position.z >= 5 && transformObj.transform.position.y == 5 && transformObj.transform.position.z == 5)
-        {
-            Vector3 positionRandom = new Vector3(Random.Range(6f,10f), 5f, 5f);
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, positionRandom, speed * Time.deltaTime);
-            Debug.Log(positionRandom);
-        }
+        //if (transformObj.transform.position.x <= 5 && transformObj.transform.position.y == 0 && transformObj.transform.position.z == 0)
+        //{
+        //    transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(BPoint.position.x, BPoint.position.y, BPoint.position.z), speed * Time.deltaTime);
+        //}
+        //if (transformObj.transform.position.x == 5 && transformObj.transform.position.y <= 5 && transformObj.transform.position.z == 0)
+        //{
+        //    transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(CPoint.position.x, CPoint.position.y, CPoint.position.z), speed * Time.deltaTime);
+        //}
+        //if (transformObj.transform.position.y == 5 && transformObj.transform.position.y == 5 && transformObj.transform.position.z <= 5)
+        //{
+        //    transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(DPoint.position.x, DPoint.position.y, DPoint.position.z), speed * Time.deltaTime);
+        //}
+        //if (moving)
+        //{
+        //    transformObj.transform.position = Vector3.MoveTowards(transform.position, arr[indexPositionRandom].position, speed * Time.deltaTime);
+        //    if (transformObj.transform.position <= arr[indexPositionRandom].position)
+        //    {
+        //        moving = false;
+        //    }
+        //}
+    }
+
+    private void RandomPoint()
+    {
+        int indexPositionRandom = Random.Range(0, arr.Length);
     }
 }
