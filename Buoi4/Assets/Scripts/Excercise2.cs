@@ -5,8 +5,11 @@ using UnityEngine;
 public class Excercise2 : MonoBehaviour
 {
     [SerializeField] private Transform transformObj;
+    [SerializeField] private Transform APoint;
+    [SerializeField] private Transform BPoint;
 
-    public float speed = 0.5f;
+    public float speed = 5f;
+    private bool movingLeft = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +21,22 @@ public class Excercise2 : MonoBehaviour
     void Update()
     {
         //moving to right
-        transformObj.transform.position = Vector3.MoveTowards(transform.position, new Vector3(5, 0, 0), speed * Time.deltaTime);
-        if (transformObj.transform.position.x == 5)
+        if(!movingLeft)
         {
-            transformObj.transform.position = new Vector3(0,0,0);
+            transform.position = Vector3.MoveTowards(transform.position, BPoint.position, speed * Time.deltaTime);
+        }
+        else if (movingLeft)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, APoint.position, speed * Time.deltaTime);
+        }
+
+        if (transform.position.x == BPoint.position.x)
+        {
+            movingLeft = true;
+        }
+        if (transform.position.x == APoint.position.x)
+        {
+            movingLeft = false;
         }
     }
 }
