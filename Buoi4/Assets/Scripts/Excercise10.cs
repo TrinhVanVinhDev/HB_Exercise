@@ -39,8 +39,6 @@ public class Excercise10 : MonoBehaviour
     private IEnumerator IEDelayTime()
     {
         float times = Mathf.Round(Random.Range(1f, 2f));
-        //movingLeft = true;
-        Debug.Log(times);
         yield return new WaitForSeconds(times);
         movingLeft = false;
     }

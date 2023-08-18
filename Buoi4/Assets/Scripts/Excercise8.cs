@@ -7,47 +7,37 @@ public class Excercise8 : MonoBehaviour
     [SerializeField] private Transform APoint;
     [SerializeField] private Transform BPoint;
 
-
     // Movement speed in units per second.
-    public float speed = 5.0F;
+    [SerializeField] private float speed = 5.0F;
 
-    // Time when the movement started.
-    private float startTime;
+    private bool movingLeft = true;
+    private float randomTime;
 
-    // Total distance between the markers.
-    private float journeyLength;
-
-    private bool oneTime = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(APoint.position, BPoint.position);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //float distCovered = (Time.time - startTime) * speed;
-        //float fractionOfJourney = distCovered / journeyLength;
-        //transform.position = Vector3.Lerp(APoint.position, BPoint.position, fractionOfJourney);
-        //if(transform.position.x == BPoint.position.x)
-        //{
-        //    startTime = Time.time;
-        //    transform.position = Vector3.Lerp(BPoint.position, APoint.position, fractionOfJourney);
-        //}
-
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(5, 0, 0), speed * Time.deltaTime);
-        if (transform.position.x == 5)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0, 0), speed * Time.deltaTime);
-        }
+        StartCoroutine(IEDelayTime(1));
     }
 
-    private IEnumerable IEDelayTime(float time)
+    private IEnumerator IEDelayTime(float time)
     {
-        yield return new WaitForSeconds(time);
+        if (!movingLeft)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, BPoint.position, speed * Time.deltaTime);
+        }
+        if (movingLeft)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, APoint.position, speed * Time.deltaTime);
+        }
+
+        if (Vector3.Distance(transform.position, BPoint.position) <= 0.1)
+        {
+            yield return new WaitForSeconds(randomTime);
+            movingLeft = true;
+        }
+        else if (Vector3.Distance(transform.position, APoint.position) <= 0.1)
+        {
+            movingLeft = false;
+        }
     }
 
 }

@@ -23,7 +23,7 @@ public class Excercise4 : MonoBehaviour
         Vector3 riseRelCenter = startPoint.position - center;
         Vector3 setRelCenter = endPoint.position - center;
         float fracComplete = (Time.time - startTime) / 1f;
-        transform.position = Vector3.Lerp(riseRelCenter, setRelCenter, fracComplete);
+        transform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         transform.position += center;
     }
 }

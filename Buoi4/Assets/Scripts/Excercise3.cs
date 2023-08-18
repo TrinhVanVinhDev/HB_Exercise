@@ -8,7 +8,7 @@ public class Excercise3 : MonoBehaviour
     [SerializeField] private Transform APoint;
     [SerializeField] private Transform BPoint;
     [SerializeField] private Transform CPoint;
-    [SerializeField] private Transform FPoint;
+    [SerializeField] private Transform DPoint;
 
     public float speed = 5f;
     private bool resetPoint = false;
@@ -16,7 +16,7 @@ public class Excercise3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,21 +25,21 @@ public class Excercise3 : MonoBehaviour
         //moving to right 3 point
         if (transformObj.transform.position.x <= 5 && transformObj.transform.position.y == 0 && transformObj.transform.position.z == 0)
         {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, APoint.position, speed * Time.deltaTime);
+            transformObj.transform.position = Vector3.MoveTowards(transform.position, BPoint.position, speed * Time.deltaTime);
 
             resetPoint = false;
         }
         if (transformObj.transform.position.x == 5 && transformObj.transform.position.y <= 5 && transformObj.transform.position.z == 0)
         {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, BPoint.position, speed * Time.deltaTime);
+            transformObj.transform.position = Vector3.MoveTowards(transform.position, CPoint.position, speed * Time.deltaTime);
         }
         if (transformObj.transform.position.y == 5 && transformObj.transform.position.y == 5 && transformObj.transform.position.z <= 5)
         {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, CPoint.position, speed * Time.deltaTime);
+            transformObj.transform.position = Vector3.MoveTowards(transform.position, DPoint.position, speed * Time.deltaTime);
         }
         if (resetPoint)
         {
-            transformObj.transform.position = Vector3.MoveTowards(transform.position, FPoint.position, speed * Time.deltaTime);
+            transformObj.transform.position = Vector3.MoveTowards(transform.position, APoint.position, speed * Time.deltaTime);
         }
         if (transformObj.transform.position.z == 5 && transformObj.transform.position.y == 5 && transformObj.transform.position.z == 5)
         {

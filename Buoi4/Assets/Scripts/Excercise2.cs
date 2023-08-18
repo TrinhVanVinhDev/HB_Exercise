@@ -14,14 +14,14 @@ public class Excercise2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //moving to right
-        if(!movingLeft)
+        if (!movingLeft)
         {
             transform.position = Vector3.MoveTowards(transform.position, BPoint.position, speed * Time.deltaTime);
         }
